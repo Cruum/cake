@@ -1,22 +1,20 @@
-import { useParams } from "react-router-dom"
-import { useNavigate } from "react-router-dom"
+import Navbar from "./composants/Navbar";
+import styled from "styled-components"
+import { theme } from "./theme"
+import Main from "./composants/Main";
 
 export default function OrderPage() {
-    
-    const { name } = useParams()
-    const navigate = useNavigate();
 
-    const handleDeco = () =>{
-        navigate(`/`)
-    }
+
     return (
 
-        < div >
-        {/* <Link to={"/"}> */}
-<p>{name}</p>
-            <button onClick={handleDeco}>Déconnexion</button>
-
-        {/* </Link> */}
-        </div >
+        < BodyStyle >
+                <Main />
+        </BodyStyle >
     )
 }
+const BodyStyle = styled.div`
+background-color: ${theme.colors.primary};
+height: 92vh;
+padding: 2rem;
+`
