@@ -1,19 +1,23 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import Connexion from './composants/connexion'
+import { useState } from 'react';
+import './App.css';
+import Connexion from './composants/Connexion';
+import OrderPage from './OrderPage';
+import ErrorPage from "./error-page";
+import { Routes, Route } from 'react-router-dom';
 
 function App() {
-  
-  const [ name, setName]  = useState()
+
 
   return (
-    <div>
-      <h1>Bienvenue chez nous!</h1>
 
-      <Connexion name={name} setName={setName}/>
-    </div>
+    <Routes>
+      <Route path="/" element={<Connexion />} />
+      <Route path="/orderpage/:name" element={<OrderPage />} />
+      <Route path="/*" element={<ErrorPage />} />
+    </Routes>
+
+
+
   )
 }
 
