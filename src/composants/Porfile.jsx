@@ -7,18 +7,16 @@ import { useNavigate } from "react-router-dom"
 import React, { useState, useEffect } from 'react';
 
 export default function Profile() {
-    const { name } = useParams()
-    const navigate = useNavigate();
-    const saveName = localStorage.getItem('name')
-    const [username, setUsername] = useState(saveName ? JSON.parse(saveName) : {name} )
+  const { name } = useParams();
+  const navigate = useNavigate();
+  const saveName = localStorage.getItem('name');
+  const [username, setUsername] = useState(name  || saveName || ''); 
 
-    console.log(saveName);
+  useEffect(() => {
+      localStorage.setItem('name', JSON.stringify(username));
+  }, [username]);
 
-    useEffect(() => {
-        localStorage.setItem(name, JSON.stringify(name));
-    }, [name]);
-
-    console.log(name)
+    console.log({username})
 
 
 
@@ -26,7 +24,7 @@ export default function Profile() {
     <ProfileStyled>
       <div className="info">
         <p>
-          Salut <b>{name}</b>
+          Salut <b>{username}</b>
         </p>
         <Link to="/">
           <div className="description">

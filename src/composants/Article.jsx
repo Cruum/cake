@@ -1,10 +1,9 @@
-import { fakeMenu } from "./fakeMenu.js";
+import { fakeMenu } from "../services/fakeMenu.js";
 import styled from "styled-components"
 import { theme } from "./../theme"
 import { formatPrice } from "../utils/maths.js";
 
 export default function Article() {
-    console.log(fakeMenu);
 
     return (
         <>
@@ -44,8 +43,8 @@ const ButtonStyle = styled.button`
 border: 1px solid ${theme.colors.primary};
 border-radius: ${theme.borderRadius.round};
 width: 50%;
-    aspect-ratio: 1/0.5;
-    max-height: 50px;
+aspect-ratio: 1/0.5;
+max-height: 40px;
 text-align: center;
 background-color: ${theme.colors.primary};  
 color: ${theme.colors.white};

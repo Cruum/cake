@@ -1,4 +1,4 @@
-import Navbar from "./Navbar";
+import Navbar from "./layout/Navbar";
 import styled from "styled-components"
 import { theme } from "./../theme"
 import Menus from "./menus";

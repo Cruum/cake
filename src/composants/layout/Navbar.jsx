@@ -1,7 +1,7 @@
-import Logo from "./Logo";
-import Profile from "./Porfile";
+import Logo from "../Logo";
+import Profile from "../Porfile";
 import styled from "styled-components"
-import { theme } from "../theme"
+import { theme } from "../../theme"
 
 export default function Narbar() {
 
