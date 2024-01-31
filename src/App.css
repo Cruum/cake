@@ -40,3 +40,47 @@
 .read-the-docs {
   color: #888;
 } */
+.switch-checkbox {
+  height: 0;
+  width: 0;
+  visibility: hidden;
+}
+
+.switch-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  width: 180px;
+  height: 35px;
+  background: grey;
+  border-radius: 100px;
+  position: relative;
+  transition: background-color .2s;
+  color: #67b6b9;
+  font-size: 8px;
+  border: 1px solid;
+}
+
+.switch-label .switch-button {
+  content: '';
+  position: absolute;
+
+  left: 3px;
+  width: 25px;
+  height: 25px;
+  border-radius: 45px;
+  transition: 0.2s;
+  background: #67b6b9;
+
+  box-shadow: 0 0 2px 0 rgba(10, 10, 10, 0.29);
+}
+
+.switch-checkbox:checked + .switch-label .switch-button {
+  left: calc(100% - 4px);
+  transform: translateX(-100%);
+}
+
+.switch-label:active .switch-button {
+  width: 60px;
+}

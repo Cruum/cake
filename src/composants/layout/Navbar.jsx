@@ -2,14 +2,14 @@ import Logo from "../Logo";
 import Profile from "../Porfile";
 import styled from "styled-components"
 import { theme } from "../../theme"
+import AdminRegroup from "../admin/AdminRegroup";
 
-export default function Narbar() {
+export default function Navbar({admin , setAdmin}) {
 
     return (
         <Nav>
             <Logo />
-            <Profile />
-
+        <AdminRegroup admin={admin} setAdmin={setAdmin}/>
         </Nav>
     )
 }

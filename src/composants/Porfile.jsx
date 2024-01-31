@@ -5,6 +5,7 @@ import { theme } from "../theme"
 import { useParams } from "react-router-dom"
 import { useNavigate } from "react-router-dom"
 import React, { useState, useEffect } from 'react';
+import ToggleAdmin from "./admin/ToggleAdmin"
 
 export default function Profile() {
   const { name } = useParams();

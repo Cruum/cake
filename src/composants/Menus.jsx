@@ -18,7 +18,7 @@ display: grid;
     gap: 2rem 5rem;
     padding: 50px 50px 150px;
     justify-content: space-around;
- grid-row-gap: 60px
- flex: 1;
+    grid-row-gap: 60px;
     overflow-y: scroll;
+    flex: 1;
 `

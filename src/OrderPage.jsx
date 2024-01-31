@@ -2,14 +2,15 @@ import Navbar from "./composants/layout/Navbar";
 import styled from "styled-components"
 import { theme } from "./theme"
 import Main from "./composants/Main";
+import { useState } from "react";
 
 export default function OrderPage() {
-
-
+    const [admin, setAdmin] = useState(false);
+    
     return (
 
         < BodyStyle >
-                <Main />
+                <Main admin={admin} setAdmin={setAdmin}/>
         </BodyStyle >
     )
 }

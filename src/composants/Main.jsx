@@ -3,11 +3,11 @@ import styled from "styled-components"
 import { theme } from "./../theme"
 import Menus from "./menus";
 
-export default function Main() {
-
+export default function Main({admin, setAdmin}) {
+ 
     return (
         <ContainerStyle>
-            <Navbar />
+            <Navbar admin={admin} setAdmin={setAdmin}/>
             <Menus/>
         </ContainerStyle>
     )
