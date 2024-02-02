@@ -3,7 +3,7 @@ import { theme } from "../../theme"
 import { GiCupcake } from "react-icons/gi";
 import { BsFillCameraFill } from "react-icons/bs";
 import { MdOutlineEuro } from "react-icons/md";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { MenuContext } from "../Main";
 
 export default function AddProduct() {
@@ -15,7 +15,18 @@ export default function AddProduct() {
     const [productPrice, setProductPrice] = useState('');
 
 
-    const [successMessage, setSuccessMessage] = useState(false);
+    const [successmessage, setSuccessmessage] = useState(true);
+
+
+    // useEffect(() => {
+    //     const succes = createConnection(serverUrl, roomId);
+    //     connection.connect();
+    //     return () => {
+    //       connection.disconnect();
+    //     };
+    //   }, [serverUrl, roomId]);
+
+
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
@@ -31,39 +42,40 @@ export default function AddProduct() {
         }
     }
 
-
+    useEffect(() => {
+        if (successmessage) {
+          const timeoutId = setTimeout(() => {
+            setSuccessmessage(false);
+          }, 2000);
+    
+          return () => clearTimeout(timeoutId);
+        }
+      }, [successmessage]);
 
     const handleAddProduct = () => {
 
         const newProduct = {
-            id: Date(), 
+            id: Date.now(), 
             title: productName,
             image: productImage,
             price: parseFloat(productPrice), 
         };
-
-      
+        
+        
         setMenu([...menu, newProduct]);
-
-       
+        
+        
         setProductName('');
         setProductImage('');
         setProductPrice('');
-        console.log(menu);
 
-        setSuccessMessage(true);
 
-        setTimeout(() => {
-            setSuccessMessage(false);
-        }, 2000);
     }
 
-
-
-
+    
     return (
         <AddStyleDiv>
-            <img />
+            <img src="Aucun image"/>
             <FormAddStyleDiv onSubmit={handleAddProduct}>
 
                 <WrapperInputStyled>
@@ -100,9 +112,10 @@ export default function AddProduct() {
                 <button > Ajouter un nouveau produit</button>
             </FormAddStyleDiv>
 
-            {successMessage && (
-                <SuccessMessage>Ajouté avec succès !</SuccessMessage>
-            )}
+                {successmessage && (
+        <SuccessMessage>Ajouté avec succès !</SuccessMessage>
+      )}
+            
         </AddStyleDiv>
     )
 }
@@ -145,12 +158,6 @@ button{
         border: 1px solid  #48dc48;
   border-radius: ${theme.borderRadius.round};
     }
-    /* svg{
-        position: absolute;
-  left: 10%;
-  color: ${theme.colors.greyMedium};
-  top: 18%;
-    } */
 `
 const WrapperInputStyled = styled.div`
 position: relative;

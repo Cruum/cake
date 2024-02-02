@@ -6,20 +6,28 @@ import Onglets from "./admin/Onglets";
 import { createContext, useContext, useState } from "react";
 import { useAdminContext } from "../OrderPage";
 
-export const MenuContext = createContext([])
+export const MenuContext = createContext([]);
+export const AdminMethod = createContext('');
+export const SelectedModify = createContext({ selectedModify: false, setSelectedModify: () => {} });
 
 export default function Main() {
-    const [adminMethod, setAdminMethod] = useState('')
+    const [adminMethod, setAdminMethod] = useState('add')
+    const  [selectedModify, setSelectedModify ] = useState(false);
     const { admin, toggleAdmin } = useAdminContext();
-    const [ menu, setMenu] = useState([])
-    
+    const [menu, setMenu] = useState([])
+
+
     return (
-        <MenuContext.Provider value={{menu, setMenu}}>
-        <ContainerStyle>
-            <Navbar admin={admin} setAdmin={toggleAdmin}/>
-            <Menus/>
-            {admin ? <Onglets adminMethod={adminMethod} setAdminMethod={setAdminMethod} /> : " "}
-        </ContainerStyle>
+        <MenuContext.Provider value={{ menu, setMenu }}>
+            <AdminMethod.Provider value={{ adminMethod, setAdminMethod }}>
+                <SelectedModify.Provider value={{ selectedModify, setSelectedModify }} >
+                    <ContainerStyle>
+                        <Navbar admin={admin} setAdmin={toggleAdmin} />
+                        <Menus />
+                        {admin ? <Onglets adminMethod={adminMethod} setAdminMethod={setAdminMethod} /> : " "}
+                    </ContainerStyle>
+                </SelectedModify.Provider>
+            </AdminMethod.Provider>
         </MenuContext.Provider>
     )
 }
