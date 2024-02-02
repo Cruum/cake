@@ -3,13 +3,12 @@ import ToggleAdmin from "./ToggleAdmin";
 import styled from "styled-components"
 import { theme } from "../../theme"
 
-export default function AdminRegroup({admin , setAdmin}) {
+export default function AdminRegroup() {
 
     return (
         <AdminStyle>
-            <ToggleAdmin admin={admin} setAdmin={setAdmin}/>
+            <ToggleAdmin />
             <Profile />
-
         </AdminStyle>
 
     )

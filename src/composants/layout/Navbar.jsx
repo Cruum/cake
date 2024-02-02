@@ -4,12 +4,12 @@ import styled from "styled-components"
 import { theme } from "../../theme"
 import AdminRegroup from "../admin/AdminRegroup";
 
-export default function Navbar({admin , setAdmin}) {
+export default function Navbar() {
 
     return (
         <Nav>
             <Logo />
-        <AdminRegroup admin={admin} setAdmin={setAdmin}/>
+        <AdminRegroup />
         </Nav>
     )
 }

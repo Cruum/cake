@@ -40,13 +40,13 @@
 .read-the-docs {
   color: #888;
 } */
-.switch-checkbox {
+/* .switch-checkbox {
   height: 0;
   width: 0;
   visibility: hidden;
-}
+} */
 
-.switch-label {
+/* .switch-label {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -60,8 +60,8 @@
   color: #67b6b9;
   font-size: 8px;
   border: 1px solid;
-}
-
+} */
+/* 
 .switch-label .switch-button {
   content: '';
   position: absolute;
@@ -74,7 +74,7 @@
   background: #67b6b9;
 
   box-shadow: 0 0 2px 0 rgba(10, 10, 10, 0.29);
-}
+} */
 
 .switch-checkbox:checked + .switch-label .switch-button {
   left: calc(100% - 4px);

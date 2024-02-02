@@ -2,14 +2,25 @@ import Navbar from "./layout/Navbar";
 import styled from "styled-components"
 import { theme } from "./../theme"
 import Menus from "./menus";
+import Onglets from "./admin/Onglets";
+import { createContext, useContext, useState } from "react";
+import { useAdminContext } from "../OrderPage";
 
-export default function Main({admin, setAdmin}) {
- 
+export const MenuContext = createContext([])
+
+export default function Main() {
+    const [adminMethod, setAdminMethod] = useState('')
+    const { admin, toggleAdmin } = useAdminContext();
+    const [ menu, setMenu] = useState([])
+    
     return (
+        <MenuContext.Provider value={{menu, setMenu}}>
         <ContainerStyle>
-            <Navbar admin={admin} setAdmin={setAdmin}/>
+            <Navbar admin={admin} setAdmin={toggleAdmin}/>
             <Menus/>
+            {admin ? <Onglets adminMethod={adminMethod} setAdminMethod={setAdminMethod} /> : " "}
         </ContainerStyle>
+        </MenuContext.Provider>
     )
 }
 

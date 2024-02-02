@@ -2,62 +2,50 @@ import { fakeMenu } from "../services/fakeMenu.js";
 import styled from "styled-components"
 import { theme } from "./../theme"
 import { formatPrice } from "../utils/maths.js";
+import { useAdminContext } from "../OrderPage.jsx";
+import { MenuContext } from "./Main.jsx";
+import { useContext } from "react";
+import { TiDelete } from "react-icons/ti";
+import ArticleShow from "./ArticleShow.jsx";
+
+const EmptyMenuMessage = () => {
+    const { admin } = useAdminContext();
+
+    return (
+        <div>
+            {!admin ? (
+                <div>
+                    Victime de notre succès
+                    <p>De nouvelles recettes sont en préparation, revenez vite!</p>
+                </div>
+            ) : (
+                <div>
+                    Il n'y a plus de produits disponibles?
+                    <p>Cliquez ci-dessous pour les réinitialiser</p>
+                    <button> Générer de nouveaux produits</button>
+                </div>
+            )}
+        </div>
+    );
+};
+
+
 
 export default function Article() {
+    const { menu, setMenu } = useContext(MenuContext);
 
     return (
         <>
-            {fakeMenu.map((menu) => (
-                <ArticleStyle key={menu.id}>
-                    <img src="../../../src/assets/cupcake-item.png" alt="" />
-                    <div>
-                        <h3>{menu.title}</h3>
-                        <BottomArticleStyle>
-                            <p>{formatPrice (menu.price)}</p>
-                            <ButtonStyle>Ajouter</ButtonStyle>
-                        </BottomArticleStyle>
-                    </div>
-                </ArticleStyle>
-            ))}
+            {!menu || menu.length === 0 ? (
+                <EmptyMenuMessage />
+            ) : (
+                menu.map((menuItem) => (
+                    <ArticleShow key={menuItem.id} menuItem={menuItem} />
+                  ))
+            )}
+
+
+
         </>
     );
 }
-
-const ArticleStyle = styled.div`
-
-box-shadow: 0px 8px 20px 8px rgba(0, 0, 0, 0.2);
-border-radius: 15px;
-padding: 1rem;
-img{
-    width: 100%;
-}
-h3{
-    font-family: pacifico;
-    padding-left: 0.5rem;
-    font-weight: 400;
-}
-`
-
-const ButtonStyle = styled.button`
-
-border: 1px solid ${theme.colors.primary};
-border-radius: ${theme.borderRadius.round};
-width: 50%;
-aspect-ratio: 1/0.5;
-max-height: 40px;
-text-align: center;
-background-color: ${theme.colors.primary};  
-color: ${theme.colors.white};
-
-cursor: pointer;
-
-`;
-
-const BottomArticleStyle = styled.div`
-display: flex;
-    justify-content: space-around;
-    align-items: center;
-    p{
-    color: ${theme.colors.primary};
-}
-    `
